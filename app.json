@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SintikApp",
-    "slug": "SintikApp",
+    "name": "SiantikApp",
+    "slug": "SiantikApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,16 +24,16 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.feryfadulrahman.SintikApp"
+      "package": "com.feryfadulrahman.SiantikApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "owner": "feryfadulrahman",
     "extra": {
       "eas": {
-        "projectId": "59204e0c-ee62-4251-ba21-062743aa675e"
+        "projectId": "6d7606bf-fe4a-4390-967e-04b0bff1f985"
       }
-    },
-    "owner": "feryfadulrahman"
+    }
   }
 }
