@@ -1,9 +1,14 @@
-import * as React from 'react';
-import { SafeAreaView, StyleSheet, RefreshControl, ScrollView } from 'react-native';
-import Constants from 'expo-constants';
-import { WebView } from 'react-native-webview';
-import Spinner from 'react-native-loading-spinner-overlay';
-import * as SplashScreen from 'expo-splash-screen';
+import * as React from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  RefreshControl,
+  ScrollView,
+} from "react-native";
+import Constants from "expo-constants";
+import { WebView } from "react-native-webview";
+import Spinner from "react-native-loading-spinner-overlay";
+import * as SplashScreen from "expo-splash-screen";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -14,13 +19,13 @@ export default function App() {
   React.useEffect(() => {
     setTimeout(async () => {
       await SplashScreen.hideAsync();
-    }, 2000); 
+    }, 2000);
   }, []);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setIsLoading(true);
-    setTimeout(() => setRefreshing(false), 1000); // Delay 1 detik untuk berhenti refresh
+    setTimeout(() => setRefreshing(false), 1000);
   }, []);
 
   return (
@@ -28,24 +33,20 @@ export default function App() {
       {isLoading && (
         <Spinner
           visible={isLoading}
-          textContent={'Loading...'}
-          textStyle={{ color: '#FFF' }}
-          color="#0000ff"
-          overlayColor="rgba(0, 0, 0, 0.75)"
+          textStyle={{ color: "#FFF" }}
+          color="#E55223"
+          overlayColor="rgba(0, 0, 0, 0.4)"
         />
       )}
 
       <ScrollView
         contentContainerStyle={{ flex: 1 }}
         refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          />
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
         <WebView
-          source={{ uri: 'https://majuberkarya.site/login' }}
+          source={{ uri: "https://majuberkarya.site/login" }}
           onLoadStart={() => setIsLoading(true)}
           onLoadEnd={() => {
             setIsLoading(false);
