@@ -2,17 +2,16 @@ import * as React from "react";
 import {
   SafeAreaView,
   StyleSheet,
-  RefreshControl,
   ScrollView,
 } from "react-native";
 import { WebView } from "react-native-webview";
-import Spinner from "react-native-loading-spinner-overlay";
 import * as SplashScreen from "expo-splash-screen";
+import Spinner from "react-native-loading-spinner-overlay";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [refresh, setRefresh] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     setTimeout(async () => {
@@ -20,47 +19,34 @@ export default function App() {
     }, 5000);
   }, []);
 
-  const handleRefresh = React.useCallback(() => {
-    setRefresh(true);
-    setTimeout(() => {
-      setRefresh(false);
-    },1000);
-  },[]);
-
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl refreshing={refresh} onRefresh={handleRefresh} />
-      }
-    >
-
-      <SafeAreaView style={styles.container}>
-        {refresh && (
+    <SafeAreaView style={styles.container}>
+      {loading ? (
           <Spinner
-            visible={refresh}
-            textStyle={{ color: "#FFF" }}
+            overlayColor="rgba(0,0,0,0.5)"            
+            size="large"
             color="#E55223"
-            overlayColor="rgba(0, 0, 0, 0.4)"
+            visible={loading}
           />
-        )}
+      ) : null}
 
-        <ScrollView contentContainerStyle={{ flex: 1 }}>
-          <WebView
-            source={{ uri: "https://majuberkarya.site/login" }}
-            onLoadStart={() => setRefresh(true)}
-            onLoadEnd={() => {
-              setRefresh(false);
-            }}
-          />
-        </ScrollView>
-      </SafeAreaView>
-      
-    </ScrollView>
+      <ScrollView
+        contentContainerStyle={{ flex: 1 }}
+      >
+        <WebView
+          source={{ uri: "https://majuberkarya.site/login" }}
+          onLoadStart={() => setLoading(true)}
+          onLoadEnd={() => setLoading(false)}
+          style={{ marginTop: 50 }}
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#E55223", 
   },
 });
