@@ -49,7 +49,7 @@ export default function App() {
           </View>
         ) : (
           <WebView
-            source={{ uri: "https://majuberkarya.site/login" }}
+            source={{ uri: "https://ryoogen-media.site/login" }}
             onLoadStart={() => setLoading(true)}
             onLoadEnd={() => setLoading(false)}
             style={{ marginTop: 50 }}
